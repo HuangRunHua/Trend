@@ -8,6 +8,7 @@
 #import "BilibiliTrendsViewController.h"
 #define TABLEVIEW_OFFSET_DISTANCE 50
 #define BUTTOM_SAFE_AREA 60
+#define DEFAULT_PADDING 40
 
 @interface BilibiliTrendsViewController ()
 {
@@ -17,7 +18,7 @@
 @property (nonatomic, strong) UIImageView *coverImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIScrollView *backgroundScrollView;
-@property (nonatomic, strong) UILabel *bottomLabel;
+@property (nonatomic, strong) UITextView *bottomTextView;
 @end
 
 @implementation BilibiliTrendsViewController
@@ -29,7 +30,7 @@
     [self loadCoverImageView];
     [self loadTitleLabel];
     [self setupTableView];
-    [self loadBottomLabel];
+    [self loadBottomTextView];
 }
 
 - (void)fetchTrends {
@@ -40,6 +41,24 @@
         @"大唐不夜城被六国游客攻陷",
         @"Epic喜加二",
         @"五一档黑马口碑炸裂",
+        @"成龙当场质疑签名书数量",
+        @"梅大高速塌方已致48人死亡",
+        @"TES零封LLL",
+        @"EDG零封AG",
+        @"梅大高速塌方一家5口遇难",
+        @"G2俱乐部竞聘海底捞",
+        @"JDG官宣战马加入",
+        @"九龙城寨真实历史揭秘",
+        @"夏奥会或改为秋奥会",
+        @"这次领先世界的是我们",
+        @"YOASOBI演唱物语新OP",
+        @"男演员骗88人到柬埔寨电诈",
+        @"FNC想起被TES让2追3",
+        @"明日TES和T1都有比赛",
+        @"特朗普违反禁言令被罚",
+        @"Ale AL",
+        @"哥伦比亚称将与以色列断交",
+        @"GAM中单被杀到Emo",
     ];
 }
 
@@ -114,32 +133,43 @@
     self.trendsTableView.layer.mask = maskLayer;
 }
 
-- (void) loadBottomLabel {
-    self.bottomLabel = [[UILabel alloc] init];
-    self.bottomLabel.text = @"已经达到热搜榜单尽头惹，关于热搜榜 >";
-    self.bottomLabel.backgroundColor = [UIColor colorNamed:@"scrollViewDefaultBackgroundColor"];;
-    self.bottomLabel.font = [UIFont systemFontOfSize:15];
-    self.bottomLabel.textColor = [UIColor grayColor];
-    self.bottomLabel.textAlignment = NSTextAlignmentCenter;
-    [self.backgroundScrollView addSubview:self.bottomLabel];
-    self.bottomLabel.translatesAutoresizingMaskIntoConstraints = NO;
+- (void) loadBottomTextView {
+    self.bottomTextView = [[UITextView alloc] init];
+    self.bottomTextView.backgroundColor = [UIColor clearColor];
+    self.bottomTextView.editable = NO;
+    /// 自动检测链接
+    self.bottomTextView.dataDetectorTypes = UIDataDetectorTypeLink;
+    
+    /// 创建富文本字符串
+    NSString *text = @"已经达到热搜榜单尽头惹，关于热搜榜 >";
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+    [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(0, text.length)];
+    /// 设置链接部分的字体颜色和下划线
+    NSRange linkRange = [text rangeOfString:@"关于热搜榜 >"];
+    [attributedString addAttribute:NSLinkAttributeName value:@"https://apple.com" range:linkRange];
+    self.bottomTextView.attributedText = attributedString;
+    self.bottomTextView.textAlignment = NSTextAlignmentCenter;
+    self.bottomTextView.linkTextAttributes = @{
+        NSForegroundColorAttributeName: [UIColor systemPinkColor],
+    };
+    
+    [self.backgroundScrollView addSubview:self.bottomTextView];
+    self.bottomTextView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints: @[
-        [self.bottomLabel.topAnchor 
+        [self.bottomTextView.topAnchor
             constraintEqualToAnchor:self.coverImageView.bottomAnchor
-         constant:_trends.count*50 - TABLEVIEW_OFFSET_DISTANCE],
-        [self.bottomLabel.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
-        [self.bottomLabel.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
-        [self.bottomLabel.heightAnchor constraintEqualToConstant:60]
+         constant:_trends.count*50 - DEFAULT_PADDING],
+        [self.bottomTextView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
+        [self.bottomTextView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
+        [self.bottomTextView.heightAnchor constraintEqualToConstant:60]
     ]];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-
-    // 更新backgroundScrollView的contentSize
     self.backgroundScrollView.contentSize = CGSizeMake(
             UIScreen.mainScreen.bounds.size.width,
-            _trends.count*50 + self.coverImageView.frame.size.height + self.bottomLabel.frame.size.height - TABLEVIEW_OFFSET_DISTANCE + BUTTOM_SAFE_AREA
+            _trends.count*50 + self.coverImageView.frame.size.height + self.bottomTextView.frame.size.height + BUTTOM_SAFE_AREA
     );
 }
 
