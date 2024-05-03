@@ -10,10 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TrendsTableViewCell : UITableViewCell
-@property NSUInteger rank;
-@property(nonatomic, strong) UILabel *rankLabel;
-@property(nonatomic, strong) UILabel *titleLabel;
-@property(nonatomic, strong) UIImageView *iconImageView;
+@property(nonatomic, assign) NSUInteger rank;
+@property(nonatomic, strong) NSString *title;
 @end
 
 NS_ASSUME_NONNULL_END

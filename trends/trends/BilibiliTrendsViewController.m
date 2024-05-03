@@ -37,7 +37,7 @@
 
 - (void)fetchTrends {
     _trends = @[
-        @"央视专访中国首位手语律师",
+        @"央视专访中国首位手语律师央视专访中国首位手语律师央视专访中国首位手语律师",
         @"韩国大力发展主机游戏",
         @"国际快递被海盗抢了",
         @"大唐不夜城被六国游客攻陷",
@@ -185,8 +185,9 @@
     if (!cell) {
         cell = [[TrendsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.rankLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)indexPath.row + 1];;
-//    cell.textLabel.text = _trends[(long)indexPath.row];
+    cell.rank = indexPath.row + 1;
+    cell.title = _trends[indexPath.row];
+//    cell.rankLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)indexPath.row + 1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
