@@ -150,7 +150,7 @@
     self.bottomTextView.attributedText = attributedString;
     self.bottomTextView.textAlignment = NSTextAlignmentCenter;
     self.bottomTextView.linkTextAttributes = @{
-        NSForegroundColorAttributeName: [UIColor systemPinkColor],
+        NSForegroundColorAttributeName: [UIColor systemPinkColor]
     };
     
     [self.backgroundScrollView addSubview:self.bottomTextView];
