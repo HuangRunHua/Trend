@@ -8,27 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		BD2093E32BE35E360039CC50 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2093E22BE35E360039CC50 /* AppDelegate.m */; };
-		BD2093E62BE35E360039CC50 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2093E52BE35E360039CC50 /* SceneDelegate.m */; };
-		BD2093E92BE35E360039CC50 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2093E82BE35E360039CC50 /* ViewController.m */; };
-		BD2093EC2BE35E360039CC50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD2093EA2BE35E360039CC50 /* Main.storyboard */; };
 		BD2093EE2BE35E360039CC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD2093ED2BE35E360039CC50 /* Assets.xcassets */; };
 		BD2093F12BE35E360039CC50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD2093EF2BE35E360039CC50 /* LaunchScreen.storyboard */; };
 		BD2093F42BE35E360039CC50 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2093F32BE35E360039CC50 /* main.m */; };
+		BD2093FC2BE35EF50039CC50 /* BilibiliTrendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2093FB2BE35EF50039CC50 /* BilibiliTrendsViewController.m */; };
+		BD2093FF2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2093FE2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BD2093DE2BE35E360039CC50 /* trends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD2093E12BE35E360039CC50 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BD2093E22BE35E360039CC50 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		BD2093E42BE35E360039CC50 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		BD2093E52BE35E360039CC50 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		BD2093E72BE35E360039CC50 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		BD2093E82BE35E360039CC50 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		BD2093EB2BE35E360039CC50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BD2093ED2BE35E360039CC50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD2093F02BE35E360039CC50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD2093F22BE35E360039CC50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD2093F32BE35E360039CC50 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BD2093FA2BE35EF50039CC50 /* BilibiliTrendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BilibiliTrendsViewController.h; sourceTree = "<group>"; };
+		BD2093FB2BE35EF50039CC50 /* BilibiliTrendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BilibiliTrendsViewController.m; sourceTree = "<group>"; };
+		BD2093FD2BE3606C0039CC50 /* trends-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "trends-Bridging-Header.h"; sourceTree = "<group>"; };
+		BD2093FE2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilibiliTrendsVCPreview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,17 +61,24 @@
 			children = (
 				BD2093E12BE35E360039CC50 /* AppDelegate.h */,
 				BD2093E22BE35E360039CC50 /* AppDelegate.m */,
-				BD2093E42BE35E360039CC50 /* SceneDelegate.h */,
-				BD2093E52BE35E360039CC50 /* SceneDelegate.m */,
-				BD2093E72BE35E360039CC50 /* ViewController.h */,
-				BD2093E82BE35E360039CC50 /* ViewController.m */,
-				BD2093EA2BE35E360039CC50 /* Main.storyboard */,
+				BD2093FA2BE35EF50039CC50 /* BilibiliTrendsViewController.h */,
+				BD2093FB2BE35EF50039CC50 /* BilibiliTrendsViewController.m */,
+				BD2094002BE360740039CC50 /* Previews */,
 				BD2093ED2BE35E360039CC50 /* Assets.xcassets */,
 				BD2093EF2BE35E360039CC50 /* LaunchScreen.storyboard */,
 				BD2093F22BE35E360039CC50 /* Info.plist */,
 				BD2093F32BE35E360039CC50 /* main.m */,
+				BD2093FD2BE3606C0039CC50 /* trends-Bridging-Header.h */,
 			);
 			path = trends;
+			sourceTree = "<group>";
+		};
+		BD2094002BE360740039CC50 /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+				BD2093FE2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift */,
+			);
+			path = Previews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,6 +112,7 @@
 				TargetAttributes = {
 					BD2093DD2BE35E360039CC50 = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 					};
 				};
 			};
@@ -135,7 +141,6 @@
 			files = (
 				BD2093F12BE35E360039CC50 /* LaunchScreen.storyboard in Resources */,
 				BD2093EE2BE35E360039CC50 /* Assets.xcassets in Resources */,
-				BD2093EC2BE35E360039CC50 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,24 +151,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD2093E92BE35E360039CC50 /* ViewController.m in Sources */,
+				BD2093FC2BE35EF50039CC50 /* BilibiliTrendsViewController.m in Sources */,
 				BD2093E32BE35E360039CC50 /* AppDelegate.m in Sources */,
 				BD2093F42BE35E360039CC50 /* main.m in Sources */,
-				BD2093E62BE35E360039CC50 /* SceneDelegate.m in Sources */,
+				BD2093FF2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BD2093EA2BE35E360039CC50 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BD2093EB2BE35E360039CC50 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BD2093EF2BE35E360039CC50 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -227,7 +224,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -282,7 +279,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -296,6 +293,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YRB62S584T;
@@ -303,9 +301,10 @@
 				INFOPLIST_FILE = trends/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -314,6 +313,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.noreply-email.trends";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "trends/trends-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -323,6 +325,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YRB62S584T;
@@ -330,9 +333,10 @@
 				INFOPLIST_FILE = trends/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -341,6 +345,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.noreply-email.trends";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "trends/trends-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
