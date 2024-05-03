@@ -8,6 +8,7 @@
 
 #import "BilibiliTrendsViewController.h"
 #import "TrendsTableViewCell.h"
+#import "Models/Trend.h"
 #define TABLEVIEW_OFFSET_DISTANCE 50
 #define BUTTOM_SAFE_AREA 60
 #define DEFAULT_PADDING 40
@@ -37,30 +38,84 @@
 
 - (void)fetchTrends {
     _trends = @[
-        @"央视专访中国首位手语律师央视专访中国首位手语律师央视专访中国首位手语律师",
-        @"韩国大力发展主机游戏",
-        @"国际快递被海盗抢了",
-        @"大唐不夜城被六国游客攻陷",
-        @"Epic喜加二",
-        @"五一档黑马口碑炸裂",
-        @"成龙当场质疑签名书数量",
-        @"梅大高速塌方已致48人死亡",
-        @"TES零封LLL",
-        @"EDG零封AG",
-        @"梅大高速塌方一家5口遇难",
-        @"G2俱乐部竞聘海底捞",
-        @"JDG官宣战马加入",
-        @"九龙城寨真实历史揭秘",
-        @"夏奥会或改为秋奥会",
-        @"这次领先世界的是我们",
-        @"YOASOBI演唱物语新OP",
-        @"男演员骗88人到柬埔寨电诈",
-        @"FNC想起被TES让2追3",
-        @"明日TES和T1都有比赛",
-        @"特朗普违反禁言令被罚",
-        @"Ale AL",
-        @"哥伦比亚称将与以色列断交",
-        @"GAM中单被杀到Emo",
+        [[Trend alloc] initWithPosition:1
+                                 keyword:@"BLG送JDG大会员"
+                                showName:@"BLG送JDG大会员"
+                                wordType:4
+                                    icon:@"https://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png"
+                                   hotID:156973
+                            isCommercial:@"0"],
+        [[Trend alloc] initWithPosition:2
+                                 keyword:@"FNC TES"
+                                showName:@"TES战胜FNC"
+                                wordType:5
+                                    icon:@"https://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png"
+                                   hotID:156940
+                            isCommercial:@"0"],
+        [[Trend alloc] initWithPosition:3
+                                 keyword:@"嫦娥六号成功发射"
+                                showName:@"嫦娥六号成功发射"
+                                wordType:5
+                                    icon:@"https://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png"
+                                   hotID:156958
+                            isCommercial:@"0"],
+        [[Trend alloc] initWithPosition:4
+                                 keyword:@"茶百道回应外卖变白水"
+                                showName:@"茶百道回应外卖变白水"
+                                wordType:5
+                                    icon:@"https://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png"
+                                   hotID:156920
+                            isCommercial:@"0"],
+        [[Trend alloc] initWithPosition:5
+                                 keyword:@"骨王最强新反派"
+                                showName:@"骨王最强新反派"
+                                wordType:4
+                                    icon:@"https://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png"
+                                   hotID:156967
+                            isCommercial:@"0"],
+        [[Trend alloc] initWithPosition:6
+                                 keyword:@"新的反派瑞克登场"
+                                showName:@"新的反派瑞克登场"
+                                wordType:4
+                                    icon:@"https://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png"
+                                   hotID:156968
+                            isCommercial:@"0"],
+        [[Trend alloc] initWithPosition:7
+                                 keyword:@"清华教授聊间谍过家家"
+                                showName:@"清华教授聊间谍过家家"
+                                wordType:8
+                                   hotID:156897
+                            isCommercial:@"0"],
+        [[Trend alloc] initWithPosition:8
+                                 keyword:@"牛约堡致歉"
+                                showName:@"牛约堡致歉"
+                                wordType:8
+                                   hotID:156963
+                            isCommercial:@"0"],
+        [[Trend alloc] initWithPosition:9
+                                 keyword:@"1家5口被海浪卷走4人遇难"
+                                showName:@"1家5口被海浪卷走4人遇难"
+                                wordType:8
+                                   hotID:156938
+                            isCommercial:@"0"],
+        [[Trend alloc] initWithPosition:10
+                                 keyword:@"1比1还原约尔"
+                                showName:@"1比1还原约尔"
+                                wordType:8
+                                   hotID:156950
+                            isCommercial:@"0"],
+        [[Trend alloc] initWithPosition:11
+                                 keyword:@"张雨绮代言辣条化妆品"
+                                showName:@"张雨绮代言辣条化妆品"
+                                wordType:8
+                                   hotID:156910
+                            isCommercial:@"0"],
+        [[Trend alloc] initWithPosition:12
+                                 keyword:@"梅大高速下跪拦车的老人"
+                                showName:@"梅大高速下跪拦车的老人"
+                                wordType:8
+                                   hotID:156936
+                            isCommercial:@"0"],
     ];
 }
 
@@ -185,9 +240,10 @@
     if (!cell) {
         cell = [[TrendsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.rank = indexPath.row + 1;
-    cell.title = _trends[indexPath.row];
-    cell.iconURLString = @"https://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png";
+    Trend *currentTrend = _trends[indexPath.row];
+    cell.rank = currentTrend.position;
+    cell.title = currentTrend.showName;
+    cell.iconURLString = currentTrend.icon;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

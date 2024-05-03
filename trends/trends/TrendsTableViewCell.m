@@ -92,11 +92,13 @@
     if (![self.iconURLString isEqual: newIconURLString]) {
         _iconURLString = [newIconURLString copy];
         [self.iconImageView sd_setImageWithURL: [NSURL URLWithString: newIconURLString] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            CGFloat iconImageWidth = image.size.width;
-            CGFloat iconImageHeight = image.size.height;
-            [NSLayoutConstraint activateConstraints: @[
-                [self.iconImageView.widthAnchor constraintEqualToAnchor:self.iconImageView.heightAnchor multiplier:(iconImageWidth / iconImageHeight)]
-            ]];
+            if (!error) {
+                CGFloat iconImageWidth = image.size.width;
+                CGFloat iconImageHeight = image.size.height;
+                [NSLayoutConstraint activateConstraints: @[
+                    [self.iconImageView.widthAnchor constraintEqualToAnchor:self.iconImageView.heightAnchor multiplier:(iconImageWidth / iconImageHeight)]
+                ]];
+            }
         }];
     }
 }

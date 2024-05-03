@@ -17,6 +17,7 @@
 		BD2094052BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2094042BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift */; };
 		BD2094082BE506C90039CC50 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BD2094072BE506C90039CC50 /* SDWebImage */; };
 		BD20940A2BE506C90039CC50 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BD2094092BE506C90039CC50 /* SDWebImageMapKit */; };
+		BD2094112BE528270039CC50 /* Trend.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2094102BE528270039CC50 /* Trend.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		BD2094012BE4C3400039CC50 /* TrendsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrendsTableViewCell.h; sourceTree = "<group>"; };
 		BD2094022BE4C3400039CC50 /* TrendsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrendsTableViewCell.m; sourceTree = "<group>"; };
 		BD2094042BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsTableViewCellPreview.swift; sourceTree = "<group>"; };
+		BD20940F2BE528270039CC50 /* Trend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trend.h; sourceTree = "<group>"; };
+		BD2094102BE528270039CC50 /* Trend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trend.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,8 @@
 			children = (
 				BD2093E12BE35E360039CC50 /* AppDelegate.h */,
 				BD2093E22BE35E360039CC50 /* AppDelegate.m */,
+				BD20940E2BE5266A0039CC50 /* Models */,
+				BD2094122BE528E90039CC50 /* ViewModel */,
 				BD2093FA2BE35EF50039CC50 /* BilibiliTrendsViewController.h */,
 				BD2093FB2BE35EF50039CC50 /* BilibiliTrendsViewController.m */,
 				BD2094012BE4C3400039CC50 /* TrendsTableViewCell.h */,
@@ -91,6 +96,22 @@
 				BD2094042BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift */,
 			);
 			path = Previews;
+			sourceTree = "<group>";
+		};
+		BD20940E2BE5266A0039CC50 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BD20940F2BE528270039CC50 /* Trend.h */,
+				BD2094102BE528270039CC50 /* Trend.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BD2094122BE528E90039CC50 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +197,7 @@
 				BD2093E32BE35E360039CC50 /* AppDelegate.m in Sources */,
 				BD2093F42BE35E360039CC50 /* main.m in Sources */,
 				BD2093FF2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift in Sources */,
+				BD2094112BE528270039CC50 /* Trend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
