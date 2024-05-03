@@ -6,6 +6,7 @@
 //
 
 #import "TrendsTableViewCell.h"
+#import <SDWebImage/SDWebImage.h>
 
 @interface TrendsTableViewCell ()
 @property(nonatomic, strong) UILabel *rankLabel;
@@ -20,6 +21,7 @@
     if (self) {
         [self loadRankLabel];
         [self loadTitleLabel];
+        [self loadIconImageView];
     }
     return self;
 }
@@ -47,13 +49,25 @@
         [self.titleLabel.topAnchor constraintEqualToAnchor:self.rankLabel.topAnchor],
         [self.titleLabel.leftAnchor constraintEqualToAnchor:self.rankLabel.rightAnchor constant:14],
         [self.titleLabel.bottomAnchor constraintEqualToAnchor:self.rankLabel.bottomAnchor],
-        [self.titleLabel.rightAnchor constraintEqualToAnchor: self.iconImageView ? self.iconImageView.leftAnchor : self.contentView.rightAnchor constant:-14],
     ]];
 }
 
+- (void)loadIconImageView {
+    self.iconImageView = [[UIImageView alloc] init];
+    [self.contentView addSubview:self.iconImageView];
+    self.iconImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [NSLayoutConstraint activateConstraints: @[
+        [self.iconImageView.topAnchor constraintEqualToAnchor:self.rankLabel.topAnchor constant:2],
+        [self.iconImageView.bottomAnchor constraintEqualToAnchor:self.rankLabel.bottomAnchor constant:-2],
+        [self.iconImageView.leftAnchor constraintEqualToAnchor:self.titleLabel.rightAnchor constant:7],
+        [self.iconImageView.rightAnchor constraintLessThanOrEqualToAnchor: self.contentView.rightAnchor constant:-14],
+    ]];
+}
 
 - (void)setRank:(NSUInteger)newRank {
     if (newRank != self.rank) {
+        _rank = newRank;
         self.rankLabel.text = [NSString stringWithFormat:@"%lu", newRank];
         if (newRank == 1) {
             self.rankLabel.textColor = [UIColor colorNamed:@"firstRankColor"];
@@ -69,7 +83,21 @@
 
 - (void)setTitle:(NSString *)newTitle {
     if (![self.title isEqual:newTitle]) {
+        _title = [newTitle copy];
         self.titleLabel.text = newTitle;
+    }
+}
+
+- (void)setIconURLString:(NSString *)newIconURLString {
+    if (![self.iconURLString isEqual: newIconURLString]) {
+        _iconURLString = [newIconURLString copy];
+        [self.iconImageView sd_setImageWithURL: [NSURL URLWithString: newIconURLString] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            CGFloat iconImageWidth = image.size.width;
+            CGFloat iconImageHeight = image.size.height;
+            [NSLayoutConstraint activateConstraints: @[
+                [self.iconImageView.widthAnchor constraintEqualToAnchor:self.iconImageView.heightAnchor multiplier:(iconImageWidth / iconImageHeight)]
+            ]];
+        }];
     }
 }
 @end

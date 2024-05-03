@@ -187,7 +187,7 @@
     }
     cell.rank = indexPath.row + 1;
     cell.title = _trends[indexPath.row];
-//    cell.rankLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)indexPath.row + 1];
+    cell.iconURLString = @"https://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

@@ -11,7 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TrendsTableViewCell : UITableViewCell
 @property(nonatomic, assign) NSUInteger rank;
-@property(nonatomic, strong) NSString *title;
+@property(nonatomic, copy) NSString *title;
+@property(nonatomic, copy) NSString *iconURLString;
 @end
 
 NS_ASSUME_NONNULL_END
