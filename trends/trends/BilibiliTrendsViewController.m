@@ -3,9 +3,11 @@
 //  trends
 //
 //  Created by Runhua Huang on 2024/5/2.
+//  https://app.bilibili.com/x/v2/search/trending/ranking
 //
 
 #import "BilibiliTrendsViewController.h"
+#import "TrendsTableViewCell.h"
 #define TABLEVIEW_OFFSET_DISTANCE 50
 #define BUTTOM_SAFE_AREA 60
 #define DEFAULT_PADDING 40
@@ -179,11 +181,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    TrendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[TrendsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = _trends[(long)indexPath.row];
+    cell.rankLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)indexPath.row + 1];;
+//    cell.textLabel.text = _trends[(long)indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

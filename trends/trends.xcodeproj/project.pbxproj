@@ -13,6 +13,8 @@
 		BD2093F42BE35E360039CC50 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2093F32BE35E360039CC50 /* main.m */; };
 		BD2093FC2BE35EF50039CC50 /* BilibiliTrendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2093FB2BE35EF50039CC50 /* BilibiliTrendsViewController.m */; };
 		BD2093FF2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2093FE2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift */; };
+		BD2094032BE4C3400039CC50 /* TrendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2094022BE4C3400039CC50 /* TrendsTableViewCell.m */; };
+		BD2094052BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2094042BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,9 @@
 		BD2093FB2BE35EF50039CC50 /* BilibiliTrendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BilibiliTrendsViewController.m; sourceTree = "<group>"; };
 		BD2093FD2BE3606C0039CC50 /* trends-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "trends-Bridging-Header.h"; sourceTree = "<group>"; };
 		BD2093FE2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilibiliTrendsVCPreview.swift; sourceTree = "<group>"; };
+		BD2094012BE4C3400039CC50 /* TrendsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrendsTableViewCell.h; sourceTree = "<group>"; };
+		BD2094022BE4C3400039CC50 /* TrendsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrendsTableViewCell.m; sourceTree = "<group>"; };
+		BD2094042BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsTableViewCellPreview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +68,8 @@
 				BD2093E22BE35E360039CC50 /* AppDelegate.m */,
 				BD2093FA2BE35EF50039CC50 /* BilibiliTrendsViewController.h */,
 				BD2093FB2BE35EF50039CC50 /* BilibiliTrendsViewController.m */,
+				BD2094012BE4C3400039CC50 /* TrendsTableViewCell.h */,
+				BD2094022BE4C3400039CC50 /* TrendsTableViewCell.m */,
 				BD2094002BE360740039CC50 /* Previews */,
 				BD2093ED2BE35E360039CC50 /* Assets.xcassets */,
 				BD2093EF2BE35E360039CC50 /* LaunchScreen.storyboard */,
@@ -77,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				BD2093FE2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift */,
+				BD2094042BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift */,
 			);
 			path = Previews;
 			sourceTree = "<group>";
@@ -151,7 +159,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD2094052BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift in Sources */,
 				BD2093FC2BE35EF50039CC50 /* BilibiliTrendsViewController.m in Sources */,
+				BD2094032BE4C3400039CC50 /* TrendsTableViewCell.m in Sources */,
 				BD2093E32BE35E360039CC50 /* AppDelegate.m in Sources */,
 				BD2093F42BE35E360039CC50 /* main.m in Sources */,
 				BD2093FF2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift in Sources */,

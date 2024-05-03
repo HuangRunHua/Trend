@@ -3,3 +3,4 @@
 //
 
 #import "BilibiliTrendsViewController.h"
+#import "TrendsTableViewCell.h"
