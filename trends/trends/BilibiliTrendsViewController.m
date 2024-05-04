@@ -9,6 +9,7 @@
 #import "BilibiliTrendsViewController.h"
 #import "TrendsTableViewCell.h"
 #import "Models/Trend.h"
+#import "ViewModel/TrendsFetcher.h"
 #define TABLEVIEW_OFFSET_DISTANCE 50
 #define BUTTOM_SAFE_AREA 60
 #define DEFAULT_PADDING 40
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIScrollView *backgroundScrollView;
 @property (nonatomic, strong) UITextView *bottomTextView;
+@property (nonatomic, strong) TrendsFetcher *trendsFetcher;
 @end
 
 @implementation BilibiliTrendsViewController
@@ -36,87 +38,18 @@
     [self loadBottomTextView];
 }
 
++ (NSString *)bilibiliTrendsURLString {
+    return @"https://app.bilibili.com/x/v2/search/trending/ranking";
+}
+
 - (void)fetchTrends {
-    _trends = @[
-        [[Trend alloc] initWithPosition:1
-                                 keyword:@"BLG送JDG大会员"
-                                showName:@"BLG送JDG大会员"
-                                wordType:4
-                                    icon:@"https://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png"
-                                   hotID:156973
-                            isCommercial:@"0"],
-        [[Trend alloc] initWithPosition:2
-                                 keyword:@"FNC TES"
-                                showName:@"TES战胜FNC"
-                                wordType:5
-                                    icon:@"https://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png"
-                                   hotID:156940
-                            isCommercial:@"0"],
-        [[Trend alloc] initWithPosition:3
-                                 keyword:@"嫦娥六号成功发射"
-                                showName:@"嫦娥六号成功发射"
-                                wordType:5
-                                    icon:@"https://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png"
-                                   hotID:156958
-                            isCommercial:@"0"],
-        [[Trend alloc] initWithPosition:4
-                                 keyword:@"茶百道回应外卖变白水"
-                                showName:@"茶百道回应外卖变白水"
-                                wordType:5
-                                    icon:@"https://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png"
-                                   hotID:156920
-                            isCommercial:@"0"],
-        [[Trend alloc] initWithPosition:5
-                                 keyword:@"骨王最强新反派"
-                                showName:@"骨王最强新反派"
-                                wordType:4
-                                    icon:@"https://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png"
-                                   hotID:156967
-                            isCommercial:@"0"],
-        [[Trend alloc] initWithPosition:6
-                                 keyword:@"新的反派瑞克登场"
-                                showName:@"新的反派瑞克登场"
-                                wordType:4
-                                    icon:@"https://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png"
-                                   hotID:156968
-                            isCommercial:@"0"],
-        [[Trend alloc] initWithPosition:7
-                                 keyword:@"清华教授聊间谍过家家"
-                                showName:@"清华教授聊间谍过家家"
-                                wordType:8
-                                   hotID:156897
-                            isCommercial:@"0"],
-        [[Trend alloc] initWithPosition:8
-                                 keyword:@"牛约堡致歉"
-                                showName:@"牛约堡致歉"
-                                wordType:8
-                                   hotID:156963
-                            isCommercial:@"0"],
-        [[Trend alloc] initWithPosition:9
-                                 keyword:@"1家5口被海浪卷走4人遇难"
-                                showName:@"1家5口被海浪卷走4人遇难"
-                                wordType:8
-                                   hotID:156938
-                            isCommercial:@"0"],
-        [[Trend alloc] initWithPosition:10
-                                 keyword:@"1比1还原约尔"
-                                showName:@"1比1还原约尔"
-                                wordType:8
-                                   hotID:156950
-                            isCommercial:@"0"],
-        [[Trend alloc] initWithPosition:11
-                                 keyword:@"张雨绮代言辣条化妆品"
-                                showName:@"张雨绮代言辣条化妆品"
-                                wordType:8
-                                   hotID:156910
-                            isCommercial:@"0"],
-        [[Trend alloc] initWithPosition:12
-                                 keyword:@"梅大高速下跪拦车的老人"
-                                showName:@"梅大高速下跪拦车的老人"
-                                wordType:8
-                                   hotID:156936
-                            isCommercial:@"0"],
-    ];
+    _trends = @[];
+    _trendsFetcher = [[TrendsFetcher alloc] init];
+    [_trendsFetcher fetchTrendsFromURLString:[BilibiliTrendsViewController bilibiliTrendsURLString]
+                                  completion:^(NSArray<Trend *> *parsedTrends) {
+        self->_trends = parsedTrends;
+    }];
+    _trends = [TrendsFetcher defaultFetcher].trends;
 }
 
 - (void)loadScrollView {
@@ -240,7 +173,8 @@
     if (!cell) {
         cell = [[TrendsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    Trend *currentTrend = _trends[indexPath.row];
+//    Trend *currentTrend = _trends[indexPath.row];
+    Trend *currentTrend = [TrendsFetcher defaultFetcher].trends[indexPath.row];
     cell.rank = currentTrend.position;
     cell.title = currentTrend.showName;
     cell.iconURLString = currentTrend.icon;
