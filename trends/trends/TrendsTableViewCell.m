@@ -49,7 +49,6 @@
         [self.titleLabel.topAnchor constraintEqualToAnchor:self.rankLabel.topAnchor],
         [self.titleLabel.leftAnchor constraintEqualToAnchor:self.rankLabel.rightAnchor constant:14],
         [self.titleLabel.bottomAnchor constraintEqualToAnchor:self.rankLabel.bottomAnchor],
-        [self.titleLabel.rightAnchor constraintEqualToAnchor:self.iconImageView ? self.iconImageView.leftAnchor : self.contentView.rightAnchor constant:-14]
     ]];
 }
 
@@ -102,7 +101,16 @@
                 CGFloat iconImageWidth = image.size.width;
                 CGFloat iconImageHeight = image.size.height;
                 [NSLayoutConstraint activateConstraints: @[
-                    [self.iconImageView.widthAnchor constraintEqualToAnchor:self.iconImageView.heightAnchor multiplier:(iconImageWidth / iconImageHeight)]
+                    [self.iconImageView.widthAnchor constraintEqualToAnchor:self.iconImageView.heightAnchor multiplier:(iconImageWidth / iconImageHeight)],
+                    [self.titleLabel.rightAnchor constraintEqualToAnchor: self.iconImageView.leftAnchor constant:-7]
+                ]];
+                [self.contentView addSubview: self.iconImageView];
+            } else {
+                /// 热度图片加载失败时移除`iconImageView`
+                [self.iconImageView removeFromSuperview];
+                /// 当没有热度视图的时候，标签的最右侧与cell的最右侧始终有至少14dp的间隔
+                [NSLayoutConstraint activateConstraints:@[
+                    [self.titleLabel.rightAnchor constraintLessThanOrEqualToAnchor: self.contentView.rightAnchor constant:-14]
                 ]];
             }
         }];
