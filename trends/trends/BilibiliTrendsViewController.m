@@ -104,7 +104,7 @@
 - (void)loadTitleLabel {
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.titleLabel.text = @"bilibili热搜";
+    self.titleLabel.text = @"bilibili 热搜";
     self.titleLabel.font = [UIFont fontWithName:@"Optima-Bold" size:55];
     self.titleLabel.textColor = [UIColor whiteColor];
     [self.coverImageView addSubview:self.titleLabel];
