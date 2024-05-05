@@ -431,7 +431,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
 
                     //build a method selector for the property and json object classes
                     NSString* selectorName = [NSString stringWithFormat:@"%@From%@:",
-                                              (property.structName? property.structName : property.type), //target name
+                                              (property.structName ? property.structName : NSStringFromClass(property.type)), //target name
                                               sourceClass]; //source name
                     SEL selector = NSSelectorFromString(selectorName);
 
@@ -989,7 +989,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
             if (YES) {
 
                 //create selector from the property's class name
-                NSString* selectorName = [NSString stringWithFormat:@"%@From%@:", @"JSONObject", p.type?p.type:p.structName];
+                NSString* selectorName = [NSString stringWithFormat:@"%@From%@:", @"JSONObject", p.type ? NSStringFromClass(p.type):p.structName];
                 SEL selector = NSSelectorFromString(selectorName);
 
                 BOOL foundCustomTransformer = NO;
@@ -1349,11 +1349,19 @@ static JSONKeyMapper* globalKeyMapper = nil;
 }
 
 #pragma mark - NSCopying, NSCoding
--(instancetype)copyWithZone:(NSZone *)zone
-{
-    return [NSKeyedUnarchiver unarchiveObjectWithData:
-        [NSKeyedArchiver archivedDataWithRootObject:self]
-     ];
+- (instancetype)copyWithZone:(NSZone *)zone {
+    NSError *error = nil;
+    NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:self requiringSecureCoding:YES error:&error];
+    if (error) {
+        NSLog(@"Error archiving object: %@", error);
+        return nil;
+    }
+    id copiedObject = [NSKeyedUnarchiver unarchivedObjectOfClass:[self class] fromData:archivedData error:&error];
+    if (error) {
+        NSLog(@"Error unarchiving object: %@", error);
+        return nil;
+    }
+    return copiedObject;
 }
 
 -(instancetype)initWithCoder:(NSCoder *)decoder
