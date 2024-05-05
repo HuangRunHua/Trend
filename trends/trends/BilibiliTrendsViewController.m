@@ -15,9 +15,6 @@
 #define DEFAULT_PADDING 40
 
 @interface BilibiliTrendsViewController ()
-{
-    NSArray *_trends;
-}
 @property (nonatomic, strong) UITableView *trendsTableView;
 @property (nonatomic, strong) UIImageView *coverImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -31,6 +28,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self fetchTrends];
+    [self updateUI];
+}
+
+- (void)dealloc {
+    [[TrendsFetcher defaultFetcher] removeObserver:self forKeyPath:@"trends"];
+}
+
++ (NSString *)bilibiliTrendsURLString {
+    return @"https://app.bilibili.com/x/v2/search/trending/ranking";
+}
+
+- (void)updateUI {
     [self loadScrollView];
     [self loadCoverImageView];
     [self loadTitleLabel];
@@ -38,18 +47,24 @@
     [self loadBottomTextView];
 }
 
-+ (NSString *)bilibiliTrendsURLString {
-    return @"https://app.bilibili.com/x/v2/search/trending/ranking";
+- (void)fetchTrends {
+    _trendsFetcher = [[TrendsFetcher alloc] init];
+    [_trendsFetcher fetchTrendsFromURLString:[BilibiliTrendsViewController bilibiliTrendsURLString]];
+    [[TrendsFetcher defaultFetcher] addObserver: self
+                                     forKeyPath:@"trends"
+                                        options:NSKeyValueObservingOptionNew
+                                        context:nil];
 }
 
-- (void)fetchTrends {
-    _trends = @[];
-    _trendsFetcher = [[TrendsFetcher alloc] init];
-    [_trendsFetcher fetchTrendsFromURLString:[BilibiliTrendsViewController bilibiliTrendsURLString]
-                                  completion:^(NSArray<Trend *> *parsedTrends) {
-        self->_trends = parsedTrends;
-    }];
-    _trends = [TrendsFetcher defaultFetcher].trends;
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context {
+    if ([keyPath isEqualToString:@"trends"] && object == [TrendsFetcher defaultFetcher]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateUI];
+        });
+    }
 }
 
 - (void)loadScrollView {
@@ -72,13 +87,17 @@
 - (void)loadCoverImageView {
     CGRect coverImageViewBound = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 9.0/16.0*UIScreen.mainScreen.bounds.size.width);
     self.coverImageView = [[UIImageView alloc] initWithFrame:coverImageViewBound];
+    // TODO: 设置translatesAutoresizingMaskIntoConstraints后ScrollView无法滚动
+//    self.coverImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.backgroundScrollView addSubview:self.coverImageView];
     self.coverImageView.image = [UIImage imageNamed:@"bilibili_trends"];
     self.coverImageView.contentMode = UIViewContentModeScaleAspectFit;
+    // TODO: 约束可能有冲突
     [NSLayoutConstraint activateConstraints: @[
         [self.coverImageView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
         [self.coverImageView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
         [self.coverImageView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
+        [self.coverImageView.heightAnchor constraintEqualToAnchor:self.coverImageView.widthAnchor multiplier:9.0/16.0]
     ]];
 }
 
@@ -109,7 +128,7 @@
         [self.trendsTableView.topAnchor constraintEqualToAnchor:self.coverImageView.bottomAnchor constant:-TABLEVIEW_OFFSET_DISTANCE],
         [self.trendsTableView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
         [self.trendsTableView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
-        [self.trendsTableView.heightAnchor constraintEqualToConstant:_trends.count*50]
+        [self.trendsTableView.heightAnchor constraintEqualToConstant:[TrendsFetcher defaultFetcher].trends.count*50]
     ]];
     
     /// 设置左上角和右上角为圆角
@@ -142,13 +161,12 @@
     self.bottomTextView.linkTextAttributes = @{
         NSForegroundColorAttributeName: [UIColor systemPinkColor]
     };
-    
-    [self.backgroundScrollView addSubview:self.bottomTextView];
     self.bottomTextView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.backgroundScrollView addSubview:self.bottomTextView];
     [NSLayoutConstraint activateConstraints: @[
         [self.bottomTextView.topAnchor
             constraintEqualToAnchor:self.coverImageView.bottomAnchor
-         constant:_trends.count*50 - DEFAULT_PADDING],
+         constant:[TrendsFetcher defaultFetcher].trends.count*50 - DEFAULT_PADDING],
         [self.bottomTextView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
         [self.bottomTextView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
         [self.bottomTextView.heightAnchor constraintEqualToConstant:60]
@@ -158,13 +176,12 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     self.backgroundScrollView.contentSize = CGSizeMake(
-            UIScreen.mainScreen.bounds.size.width,
-            _trends.count*50 + self.coverImageView.frame.size.height + self.bottomTextView.frame.size.height + BUTTOM_SAFE_AREA
+            UIScreen.mainScreen.bounds.size.width,self.trendsTableView.contentSize.height + self.coverImageView.frame.size.height + self.bottomTextView.contentSize.height + BUTTOM_SAFE_AREA - TABLEVIEW_OFFSET_DISTANCE
     );
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _trends.count;
+    return [TrendsFetcher defaultFetcher].trends.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -173,11 +190,16 @@
     if (!cell) {
         cell = [[TrendsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-//    Trend *currentTrend = _trends[indexPath.row];
-    Trend *currentTrend = [TrendsFetcher defaultFetcher].trends[indexPath.row];
-    cell.rank = currentTrend.position;
-    cell.title = currentTrend.showName;
-    cell.iconURLString = currentTrend.icon;
+    if ([TrendsFetcher defaultFetcher].trends.count > 0) {
+        Trend *currentTrend = [TrendsFetcher defaultFetcher].trends[indexPath.row];
+        if ([currentTrend isKindOfClass:[Trend class]]) {
+            cell.rank = currentTrend.position;
+            cell.title = currentTrend.showName;
+            cell.iconURLString = currentTrend.icon;
+        } else {
+            NSLog(@"Error: Expected a Trend object, but received: %@", [currentTrend class]);
+        }
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

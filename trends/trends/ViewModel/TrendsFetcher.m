@@ -27,12 +27,10 @@
     return self;
 }
 
-- (void)fetchTrendsFromURLString:(nonnull NSString *)urlString
-                      completion: (void (^)(NSArray <Trend*> *)) completion {
+- (void)fetchTrendsFromURLString:(nonnull NSString *)urlString {
     [self fetchContentFromURLString:urlString completion:^(NSString *content, NSError *error) {
         if (!error) {
             [self parseResponseDataWithContent:content];
-            completion(self->_trends);
         }
     }];
 }
@@ -79,15 +77,34 @@
     ResponseData *responseData = [[ResponseData alloc] initWithString: content error:&error];
     if (error) {
         NSLog(@"Error occured when parsing response data: %@", error.localizedDescription);
-        [TrendsFetcher defaultFetcher].trends = @[];
-        return;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [TrendsFetcher defaultFetcher].trends = @[];
+        });
     } else if (responseData == nil) {
         NSLog(@"Failed to parse response data.");
-        [TrendsFetcher defaultFetcher].trends = @[];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [TrendsFetcher defaultFetcher].trends = @[];
+        });
     }  else {
-        [TrendsFetcher defaultFetcher].trends = [responseData.data.list copy];
+        // 将NSDictionary对象转换为Trend对象
+        NSMutableArray<Trend *> *trends = [NSMutableArray array];
+        for (NSDictionary *dict in responseData.data.list) {
+            Trend *trend = [[Trend alloc] init];
+            trend.position = [dict[@"position"] integerValue];
+            trend.keyword = dict[@"keyword"];
+            trend.showName = dict[@"show_name"];
+            trend.wordType = [dict[@"word_type"] integerValue];
+            NSString *iconURL = [dict[@"icon"] stringByReplacingOccurrencesOfString:@"http://" withString:@"https://"];
+            trend.icon = iconURL;
+            trend.hotId = [dict[@"hot_id"] integerValue];
+            trend.isCommercial = dict[@"is_commercial"];
+            trend.showLiveIcon = dict[@"show_live_icon"] ? [dict[@"show_live_icon"] boolValue] : NO;
+            [trends addObject:trend];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [TrendsFetcher defaultFetcher].trends = trends;
+        });
     }
-    NSLog(@"%@",[TrendsFetcher defaultFetcher].trends);
 }
 
 @end

@@ -49,6 +49,7 @@
         [self.titleLabel.topAnchor constraintEqualToAnchor:self.rankLabel.topAnchor],
         [self.titleLabel.leftAnchor constraintEqualToAnchor:self.rankLabel.rightAnchor constant:14],
         [self.titleLabel.bottomAnchor constraintEqualToAnchor:self.rankLabel.bottomAnchor],
+        [self.titleLabel.rightAnchor constraintEqualToAnchor:self.iconImageView ? self.iconImageView.leftAnchor : self.contentView.rightAnchor constant:-14]
     ]];
 }
 
@@ -69,14 +70,19 @@
     if (newRank != self.rank) {
         _rank = newRank;
         self.rankLabel.text = [NSString stringWithFormat:@"%lu", newRank];
-        if (newRank == 1) {
-            self.rankLabel.textColor = [UIColor colorNamed:@"firstRankColor"];
-        } else if (newRank == 2) {
-            self.rankLabel.textColor = [UIColor colorNamed:@"secondRankColor"];
-        } else if (newRank == 3) {
-            self.rankLabel.textColor = [UIColor colorNamed:@"thirdRankColor"];
-        } else {
-            self.rankLabel.textColor = [UIColor grayColor];
+        switch (newRank) {
+            case 1:
+                self.rankLabel.textColor = [UIColor colorNamed:@"firstRankColor"];
+                break;
+            case 2:
+                self.rankLabel.textColor = [UIColor colorNamed:@"secondRankColor"];
+                break;
+            case 3:
+                self.rankLabel.textColor = [UIColor colorNamed:@"thirdRankColor"];
+                break;
+            default:
+                self.rankLabel.textColor = [UIColor colorNamed:@"defaultRankColor"];
+                break;
         }
     }
 }

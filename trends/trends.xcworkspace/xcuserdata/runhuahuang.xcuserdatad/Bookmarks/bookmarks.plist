@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>top-level-items</key>
+	<array>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>16</string>
+					<key>EndingLineNumber</key>
+					<string>94</string>
+					<key>StartingColumnNumber</key>
+					<string>4</string>
+					<key>StartingLineNumber</key>
+					<string>94</string>
+					<key>Timestamp</key>
+					<string>736574302.493107</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>trends/trends/BilibiliTrendsViewController.m</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>// TODO: 约束可</string>
+				<key>leading</key>
+				<string>    self.coverImageView.image = [UIImage imageNamed:@"bilibili_trends"];
+    self.coverImageView.contentMode = UIViewContentModeScaleAspectFit;
+    </string>
+				<key>trailing</key>
+				<string>能有冲突
+    [NSLayoutConstraint activateConstraints: @[
+        [self.coverImageView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+</string>
+			</dict>
+			<key>title</key>
+			<string>约束可能有冲突</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>65</string>
+					<key>EndingLineNumber</key>
+					<string>89</string>
+					<key>StartingColumnNumber</key>
+					<string>4</string>
+					<key>StartingLineNumber</key>
+					<string>89</string>
+					<key>Timestamp</key>
+					<string>736574320.904449</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>trends/trends/BilibiliTrendsViewController.m</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>// TODO: 设置translatesAutoresizingMaskIntoConstraints后ScrollVi</string>
+				<key>leading</key>
+				<string>    CGRect coverImageViewBound = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 9.0/16.0*UIScreen.mainScreen.bounds.size.width);
+    self.coverImageView = [[UIImageView alloc] initWithFrame:coverImageViewBound];
+    </string>
+				<key>trailing</key>
+				<string>ew无法滚动
+//    self.coverImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.backgroundScrollView addSubview:self.coverImageView];
+</string>
+			</dict>
+			<key>title</key>
+			<string>设置translatesAutoresizingMaskIntoConstraints后ScrollView无法滚动</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+	</array>
+</dict>
+</plist>

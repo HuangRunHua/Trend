@@ -14,8 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSArray <Trend*> *trends;
 
 + (instancetype)defaultFetcher;
-- (void)fetchTrendsFromURLString:(nonnull NSString *)urlString
-                      completion: (void (^)(NSArray <Trend*> *)) completion;
+- (void)fetchTrendsFromURLString:(nonnull NSString *)urlString;
 @end
 
 NS_ASSUME_NONNULL_END
