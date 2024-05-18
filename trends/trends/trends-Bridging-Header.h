@@ -4,3 +4,4 @@
 
 #import "BilibiliTrendsViewController.h"
 #import "TrendsTableViewCell.h"
+#import "LiveIconView.h"

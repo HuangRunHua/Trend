@@ -6,21 +6,26 @@
 //
 
 #import "TrendsTableViewCell.h"
+#import "LiveIconView.h"
 #import <SDWebImage/SDWebImage.h>
 
 @interface TrendsTableViewCell ()
 @property(nonatomic, strong) UILabel *rankLabel;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UIImageView *iconImageView;
+@property(nonatomic, strong) LiveIconView *liveIconView;
 @end
 
 @implementation TrendsTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style 
+              reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        _showLiveIcon = NO;
         [self loadRankLabel];
         [self loadTitleLabel];
+        [self loadLiveIconView];
         [self loadIconImageView];
     }
     return self;
@@ -65,6 +70,19 @@
     ]];
 }
 
+- (void)loadLiveIconView {
+    self.liveIconView = [[LiveIconView alloc] init];
+    [self.contentView addSubview:self.liveIconView];
+    self.liveIconView.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints: @[
+        [self.liveIconView.topAnchor constraintEqualToAnchor:self.rankLabel.topAnchor constant:2],
+        [self.liveIconView.bottomAnchor constraintEqualToAnchor:self.rankLabel.bottomAnchor constant:-2],
+        [self.liveIconView.leftAnchor constraintEqualToAnchor:self.titleLabel.rightAnchor constant:7],
+        [self.liveIconView.widthAnchor constraintEqualToConstant:40],
+        [self.liveIconView.rightAnchor constraintLessThanOrEqualToAnchor: self.contentView.rightAnchor constant:-14],
+    ]];
+}
+
 - (void)setRank:(NSUInteger)newRank {
     if (newRank != self.rank) {
         _rank = newRank;
@@ -90,6 +108,22 @@
     if (![self.title isEqual:newTitle]) {
         _title = [newTitle copy];
         self.titleLabel.text = newTitle;
+    }
+}
+
+- (void)setShowLiveIcon:(Boolean)newShowLiveIcon 
+{
+    _showLiveIcon = newShowLiveIcon;
+    if (_showLiveIcon) {
+        [self.contentView addSubview:self.liveIconView];
+        [NSLayoutConstraint activateConstraints: @[
+            [self.titleLabel.rightAnchor constraintEqualToAnchor: self.liveIconView.leftAnchor constant:-7]
+        ]];
+    } else {
+        [self.liveIconView removeFromSuperview];
+        [NSLayoutConstraint activateConstraints:@[
+            [self.titleLabel.rightAnchor constraintLessThanOrEqualToAnchor: self.contentView.rightAnchor constant:-14]
+        ]];
     }
 }
 

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) NSUInteger rank;
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy, nullable) NSString *iconURLString;
+@property(nonatomic, assign) Boolean showLiveIcon;
 @end
 
 NS_ASSUME_NONNULL_END

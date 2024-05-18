@@ -196,6 +196,7 @@
             cell.rank = currentTrend.position;
             cell.title = currentTrend.showName;
             cell.iconURLString = currentTrend.icon;
+            cell.showLiveIcon = currentTrend.showLiveIcon;
         } else {
             NSLog(@"Error: Expected a Trend object, but received: %@", [currentTrend class]);
         }

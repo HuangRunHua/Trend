@@ -17,6 +17,8 @@
 		BD2094032BE4C3400039CC50 /* TrendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2094022BE4C3400039CC50 /* TrendsTableViewCell.m */; };
 		BD2094052BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2094042BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift */; };
 		BD2094112BE528270039CC50 /* Trend.m in Sources */ = {isa = PBXBuildFile; fileRef = BD2094102BE528270039CC50 /* Trend.m */; };
+		BD3A5B6B2BF84E26005E08F2 /* LiveIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3A5B6A2BF84E26005E08F2 /* LiveIconView.m */; };
+		BD3A5B6D2BF84E44005E08F2 /* LiveIconPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A5B6C2BF84E44005E08F2 /* LiveIconPreview.swift */; };
 		BD6A08F82BE6616400DC4A65 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BD6A08F72BE6616400DC4A65 /* SDWebImage */; };
 		BD6A08FA2BE6616400DC4A65 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BD6A08F92BE6616400DC4A65 /* SDWebImageMapKit */; };
 		BD6A08FD2BE66A4000DC4A65 /* ResponseData.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6A08FC2BE66A4000DC4A65 /* ResponseData.m */; };
@@ -43,6 +45,9 @@
 		BD2094042BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsTableViewCellPreview.swift; sourceTree = "<group>"; };
 		BD20940F2BE528270039CC50 /* Trend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trend.h; sourceTree = "<group>"; };
 		BD2094102BE528270039CC50 /* Trend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trend.m; sourceTree = "<group>"; };
+		BD3A5B692BF84E26005E08F2 /* LiveIconView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveIconView.h; sourceTree = "<group>"; };
+		BD3A5B6A2BF84E26005E08F2 /* LiveIconView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveIconView.m; sourceTree = "<group>"; };
+		BD3A5B6C2BF84E44005E08F2 /* LiveIconPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveIconPreview.swift; sourceTree = "<group>"; };
 		BD6A08FB2BE66A4000DC4A65 /* ResponseData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResponseData.h; sourceTree = "<group>"; };
 		BD6A08FC2BE66A4000DC4A65 /* ResponseData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResponseData.m; sourceTree = "<group>"; };
 		BD6A08FE2BE66E3B00DC4A65 /* TrendsFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrendsFetcher.h; sourceTree = "<group>"; };
@@ -112,6 +117,8 @@
 				BD2093FB2BE35EF50039CC50 /* BilibiliTrendsViewController.m */,
 				BD2094012BE4C3400039CC50 /* TrendsTableViewCell.h */,
 				BD2094022BE4C3400039CC50 /* TrendsTableViewCell.m */,
+				BD3A5B692BF84E26005E08F2 /* LiveIconView.h */,
+				BD3A5B6A2BF84E26005E08F2 /* LiveIconView.m */,
 				BD2094002BE360740039CC50 /* Previews */,
 				BD2093ED2BE35E360039CC50 /* Assets.xcassets */,
 				BD2093EF2BE35E360039CC50 /* LaunchScreen.storyboard */,
@@ -127,6 +134,7 @@
 			children = (
 				BD2093FE2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift */,
 				BD2094042BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift */,
+				BD3A5B6C2BF84E44005E08F2 /* LiveIconPreview.swift */,
 			);
 			path = Previews;
 			sourceTree = "<group>";
@@ -259,6 +267,7 @@
 				BD2094052BE4C4C10039CC50 /* TrendsTableViewCellPreview.swift in Sources */,
 				BD2093FC2BE35EF50039CC50 /* BilibiliTrendsViewController.m in Sources */,
 				BD6A08FD2BE66A4000DC4A65 /* ResponseData.m in Sources */,
+				BD3A5B6B2BF84E26005E08F2 /* LiveIconView.m in Sources */,
 				BD6A09032BE6793400DC4A65 /* ResponsedTrendsData.m in Sources */,
 				BD2094032BE4C3400039CC50 /* TrendsTableViewCell.m in Sources */,
 				BD6A09002BE66E3C00DC4A65 /* TrendsFetcher.m in Sources */,
@@ -266,6 +275,7 @@
 				BD2093F42BE35E360039CC50 /* main.m in Sources */,
 				BD2093FF2BE3606D0039CC50 /* BilibiliTrendsVCPreview.swift in Sources */,
 				BD2094112BE528270039CC50 /* Trend.m in Sources */,
+				BD3A5B6D2BF84E44005E08F2 /* LiveIconPreview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
